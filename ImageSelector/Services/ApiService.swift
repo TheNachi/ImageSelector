@@ -7,11 +7,11 @@
 
 import Foundation
 
-struct ApiManager {
+struct ApiService {
     private let imageUrl = StringHelper.baseUrl.rawValue
-    weak var delegate: ApiManagerDelegate?
+    weak var delegate: ApiServiceDelegate?
     
-    func fetchPhotos(photosDelegate: ApiManagerDelegate) {
+    func fetchPhotos(photosDelegate: ApiServiceDelegate) {
         if let url = URL(string: imageUrl) {
             let session = URLSession(configuration: .default)
             let task = session.dataTask(with: url) { (data, response, error) in
@@ -42,7 +42,7 @@ struct ApiManager {
     }
 }
 
-protocol ApiManagerDelegate: class {
+protocol ApiServiceDelegate: class {
     func gotPhotos(photos: [String])
     func failureToGetPhotos(error: Error)
 }
